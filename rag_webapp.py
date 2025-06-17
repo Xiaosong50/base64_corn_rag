@@ -3,6 +3,8 @@ from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 from langchain_openai import ChatOpenAI
 
+
+
 app = Flask(__name__)
 
 # 嵌入模型
@@ -55,8 +57,7 @@ def index():
         # 给LLM的标准Prompt
         rag_prompt = f"""你是农业知识助手，请根据以下知识片段回答用户问题：
 {context}
-用户问题：{query}
-请用准确的中文回答。"""
+用户问题：{query}。"""
 
         response = llm.invoke(rag_prompt)
         answer = response.content

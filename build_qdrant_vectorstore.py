@@ -13,6 +13,16 @@ qdrant = QdrantClient(
     timeout=600.0
 )
 
+# from qdrant_client import QdrantClient
+
+# qdrant = QdrantClient(
+#     url="https://49e23577-2b75-49a0-ab71-2940f9ba2db9.eu-central-1-0.aws.cloud.qdrant.io:6333", 
+#     api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.Dw7SB1LmmftGmVd2ij61MjemAzu6A1_KMFQ67Ab5gbM",
+#     timeout=600.0
+# )
+
+# print(qdrant_client.get_collections())
+
 collection = "corn_base64_knowledge"
 
 # 删除旧collection
@@ -46,7 +56,7 @@ payloads.append(weed)
 vectors = model.encode(texts, batch_size=32, show_progress_bar=True)
 
 # 批量 upsert
-batch_size = 20
+batch_size = 2
 total = len(vectors)
 
 for i in range(0, total, batch_size):
