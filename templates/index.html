@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>玉米图文知识库 RAG系统</title>
+</head>
+<body>
+    <h1>玉米病虫草害智能问答系统</h1>
+
+    <form method="post">
+        <input name="query" placeholder="请输入你的问题..." size="60">
+        <button type="submit">查询</button>
+    </form>
+
+    {% for doc in results %}
+        <h3>{{ doc.title }} ({{ doc.type }})</h3>
+        {% for img in doc.images %}
+            <p>图片：{{ img.filename }}</p>
+            <img src="data:image/png;base64,{{ img.base64 }}" width="200">
+        {% endfor %}
+    {% endfor %}
+
+    {% if answer %}
+        <h2>模型生成回答：</h2>
+        <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html>
