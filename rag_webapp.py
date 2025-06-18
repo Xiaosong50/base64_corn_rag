@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 from langchain_openai import ChatOpenAI
-
+from markdown import markdown
 
 
 app = Flask(__name__)
@@ -67,7 +67,7 @@ def index():
 
         response = llm.invoke(rag_prompt)
         answer = response.content
-        from markdown import markdown
+        
 
         # LLM生成回答后
         answer_html = markdown(answer)
