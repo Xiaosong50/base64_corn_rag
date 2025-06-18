@@ -6,7 +6,18 @@ from qdrant_client import QdrantClient, models
 model = SentenceTransformer("BAAI/bge-large-zh-v1.5")
 
 # 连接本地 Qdrant
-qdrant = QdrantClient("localhost", port=6333)
+qdrant = QdrantClient(
+    host="localhost",
+    grpc_port=6334,
+    prefer_grpc=True
+)
+
+# 连接远程cloud
+# qdrant = QdrantClient(
+#     url="https://49e23577-2b75-49a0-ab71-2940f9ba2db9.eu-central-1-0.aws.cloud.qdrant.io:6333", 
+#     api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.Dw7SB1LmmftGmVd2ij61MjemAzu6A1_KMFQ67Ab5gbM",
+#     timeout=600.0
+# )
 collection = "corn_base64_knowledge"
 
 while True:

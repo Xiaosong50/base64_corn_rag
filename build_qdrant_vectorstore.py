@@ -43,20 +43,35 @@ texts, payloads = [], []
 
 # 病虫害部分
 for record in data["pests"]:
-    full_text = f"{record['title']}\n{record['symptom_field']}：{record['symptom_content']}\n{record['rule_field']}：{record['rule_content']}\n{record['control_field']}：{record['control_content']}"
+    full_text = f"{record['title']}\n"
+    full_text += f"{record['symptom_field']}：{record['symptom_content']}\n"
+    full_text += f"{record['rule_field']}：{record['rule_content']}\n"
+    full_text += f"{record['control_field']}：{record['control_content']}\n"
+
+    # ✅ 拼接图片名
+    if record.get("images"):
+        for img in record["images"]:
+            full_text += f"图片：{img['filename']}\n"
+
     texts.append(full_text)
     payloads.append(record)
 
 # 杂草防除部分
 weed = data["weed"]
-texts.append(weed["content"])
+full_text = weed["content"] + "\n"
+
+if weed.get("images"):
+    for img in weed["images"]:
+        full_text += f"图片：{img['filename']}\n"
+
+texts.append(full_text)
 payloads.append(weed)
 
 # 批量嵌入（本地化预处理加速）
 vectors = model.encode(texts, batch_size=32, show_progress_bar=True)
 
 # 批量 upsert
-batch_size = 2
+batch_size = 10
 total = len(vectors)
 
 for i in range(0, total, batch_size):

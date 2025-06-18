@@ -54,8 +54,13 @@ def index():
             elif payload.get('type') == '杂草防除':
                 context += f"【{payload['title']}】\n{payload['content']}\n\n"
 
+            if payload.get("images"):
+                for img in payload["images"]:
+                    context += f"图片：{img['filename']}\n"
+
+    context += "\n"
         # 给LLM的标准Prompt
-        rag_prompt = f"""你是农业知识助手，请根据以下知识片段回答用户问题：
+        rag_prompt = f"""你是一位资深的农业知识助手，并喜欢完整的讲解用户的问题，请根据以下知识片段回答用户问题：
 {context}
 用户问题：{query}。"""
 
