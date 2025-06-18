@@ -50,20 +50,21 @@ def index():
                     context += f"{payload['rule_field']}：{payload['rule_content']}\n"
                 if payload['control_content']:
                     context += f"{payload['control_field']}：{payload['control_content']}\n"
-                context += "\n"
+                # context += "\n"
             elif payload.get('type') == '杂草防除':
                 context += f"【{payload['title']}】\n{payload['content']}\n\n"
 
             if payload.get("images"):
                 for img in payload["images"]:
                     context += f"图片：{img['filename']}\n"
+                    # context += f"{img['filename']}图：{img['base64']}\n"
 
         context += "\n"
         # 给LLM的标准Prompt
         rag_prompt = f"""你是一位资深的农业知识助手并喜欢完整的讲解用户的问题，请根据以下知识片段回答用户问题：
 {context}
 用户问题：{query}
-输出格式要美观，该换行就换行，该分段就分段。"""
+文本输出格式要美观，该换行就换行，该分段就分段。"""
 
         response = llm.invoke(rag_prompt)
         answer = response.content
