@@ -70,7 +70,7 @@ def index():
         
 
         # LLM生成回答后
-        answer_html = markdown(answer)
+        answer_html = markdown(answer,extensions=['tables'])
         
     return render_template("index.html", results=results, answer=answer_html)
 
