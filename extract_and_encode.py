@@ -36,7 +36,7 @@ def extract_blocks(text, image_dir):
             if os.path.exists(img_path):
                 img_b64 = encode_image_base64(img_path)
                 images_info.append({
-                    'filename': imgfile,
+                    'filename': os.path.splitext(imgfile)[0],  # 去除扩展名
                     'base64': img_b64
                 })
 
@@ -61,14 +61,14 @@ def extract_blocks(text, image_dir):
     }
 
     pest_used_imgs = {img['filename'] for record in pest_data for img in record['images']}
-    remaining_imgs = [img for img in image_files if img not in pest_used_imgs]
+    remaining_imgs = [img for img in image_files if os.path.splitext(img)[0] not in pest_used_imgs]
 
     for imgfile in remaining_imgs:
         img_path = os.path.join(image_dir, imgfile)
         if os.path.exists(img_path):
             img_b64 = encode_image_base64(img_path)
             weed_record['images'].append({
-                'filename': imgfile,
+                'filename': os.path.splitext(imgfile)[0],  # 去除扩展名
                 'base64': img_b64
             })
 
