@@ -67,8 +67,12 @@ def index():
 
         response = llm.invoke(rag_prompt)
         answer = response.content
+        from markdown import markdown
+
+        # LLM生成回答后
+        answer_html = markdown(answer)
         
-    return render_template("index.html", results=results, answer=answer)
+    return render_template("index.html", results=results, answer=answer_html)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)

@@ -11,18 +11,18 @@
         <input name="query" placeholder="请输入你的问题..." size="60">
         <button type="submit">查询</button>
     </form>
-
     {% for doc in results %}
-        <h3>{{ doc.title }} ({{ doc.type }})</h3>
-        {% for img in doc.images %}
-            <p>图片：{{ img.filename }}</p>
-            <img src="data:image/png;base64,{{ img.base64 }}" width="200">
-        {% endfor %}
-    {% endfor %}
+    <h3>{{ doc.title }} ({{ doc.type }})</h3>
 
     {% if answer %}
         <h2>模型生成回答：</h2>
-        <p>{{ answer }}</p>
+        <div>{{ answer | safe }}</div>
     {% endif %}
+
+    {% for img in doc.images %}
+        <p>图片：{{ img.filename }}</p>
+        <img src="data:image/png;base64,{{ img.base64 }}" width="200">
+    {% endfor %}
+{% endfor %}
 </body>
 </html>
