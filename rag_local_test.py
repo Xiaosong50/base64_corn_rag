@@ -30,7 +30,7 @@ while True:
     hits = qdrant.search(
         collection_name=collection,
         query_vector=query_vector,
-        limit=5,
+        limit=2,
         with_payload=True
     )
 
