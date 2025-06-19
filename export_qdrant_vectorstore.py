@@ -25,4 +25,4 @@ for point in all_points:
 with open("exported_knowledge.json", "w", encoding="utf-8") as f:
     json.dump(exported_data, f, ensure_ascii=False, indent=2)
 
-print("✅ 知识库已导出")
+print("知识库已导出")

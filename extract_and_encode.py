@@ -81,4 +81,4 @@ if __name__ == "__main__":
     with open("data/structured_data.json", "w", encoding="utf-8") as f:
         json.dump({"pests": pest_data, "weed": weed_record}, f, ensure_ascii=False, indent=2)
 
-    print("✅ 数据抽取 + 图片Base64编码 完成！")
+    print("数据抽取 + 图片Base64编码 完成！")

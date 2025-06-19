@@ -48,7 +48,7 @@ for record in data["pests"]:
     full_text += f"{record['rule_field']}：{record['rule_content']}\n"
     full_text += f"{record['control_field']}：{record['control_content']}\n"
 
-    # ✅ 拼接图片名
+    # 拼接图片名
     if record.get("images"):
         for img in record["images"]:
             full_text += f"图片：{img['filename']}\n"
@@ -87,6 +87,6 @@ for i in range(0, total, batch_size):
 
     if batch_points:
         qdrant.upsert(collection_name=collection, points=batch_points)
-        print(f"✅ 已入库 {end_idx} / {total} 条")
+        print(f"已入库 {end_idx} / {total} 条")
 
-print("✅ Qdrant图文混合高速建库（gRPC）完成 ✅")
+print("Qdrant图文混合高速建库（gRPC）完成")
