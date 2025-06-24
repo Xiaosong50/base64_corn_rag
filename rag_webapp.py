@@ -29,6 +29,7 @@ llm = ChatOpenAI(
 @app.route("/", methods=["GET", "POST"])
 def index():
     answer, results = None, []
+    answer_html = None
     if request.method == "POST":
         query = request.form["query"]
         query_vec = model.encode(query)
