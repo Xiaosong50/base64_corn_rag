@@ -1,1 +1,3 @@
-data/structured_data.json
+data/
+.DS_Store
+
