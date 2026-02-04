@@ -22,7 +22,6 @@ collection = "corn_base64_knowledge"
 
 # LLM挂载
 llm = ChatOpenAI(
-    # openai_api_key="sk-4d4a4f93c71f4f42a3f33761b9c927d9",
     openai_api_key=os.getenv("OPENAI_API_KEY"),
     openai_api_base="https://api.deepseek.com",
     model="deepseek-chat"
