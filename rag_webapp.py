@@ -3,8 +3,9 @@ from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 from langchain_openai import ChatOpenAI
 from markdown import markdown
-
-
+import os
+from dotenv import load_dotenv
+load_dotenv("config.env")
 app = Flask(__name__)
 
 # 嵌入模型
@@ -21,7 +22,8 @@ collection = "corn_base64_knowledge"
 
 # LLM挂载
 llm = ChatOpenAI(
-    openai_api_key="sk-1bb535fafae7492b8e1ea724e4bade9c",
+    # openai_api_key="sk-4d4a4f93c71f4f42a3f33761b9c927d9",
+    openai_api_key=os.getenv("OPENAI_API_KEY"),
     openai_api_base="https://api.deepseek.com",
     model="deepseek-chat"
 )
